@@ -1,4 +1,4 @@
-#node_modulesをGitHub上にpushするとき、重いので弾かれるため、このファイルで除外
+#node_modules,.nextをGitHub上にpushするとき、重いので弾かれるため、このファイルで除外
 # ディレクトリを指定する場合
 node_modules/
 .next/
