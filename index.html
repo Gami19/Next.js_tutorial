@@ -1,62 +1,28 @@
-<html></html>
- <body>
-   <div id="app"></div>
-   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- babelの追加 -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/jsx">
-        // 'app' id を持つ div 要素を選択
-        const app = document.getElementById('app');
+import { useState } from 'react';
 
-        //実際のページの表示内容
-        function Header(props){
-            
-            return (
-              <>
-              <h1>{props.title}</h1><p>{props.sentense}</p>
-              </>
-                  ); 
-        }
-        //処理内容
-        function HeaderPage(){
-            const name = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
-            
-            const [likes,setLikes] = React.useState(0);
-            
-            function handleonClick(){
-              setLikes(likes + 1);
-            }
-            function handleChange(event){
-              console.log(event.target.value); //入力された文字をログ出力
-              console.log(event); // シンセティックイベント全体
-              console.log(event.target); // イベント発生元（<input>）
-  
-            } 
-            
-            return(
-              <div>
-                <Header title="React" sentense="わかってきた！"/>
-                
-                <ul>
-                  {name.map(
-                      (name)=> (
-                    <li key={name}>{name}</li>
-                    ))}
-                </ul>
-                <ul>
-                  <button onClick={handleonClick}>Like({likes})</button>
-                </ul>
-                <ul>
-                  <input type = "text" onChange = {handleChange} placeholder ="ここに入力" />
-                </ul>  
-                <Header title="Next.js" sentense="全然わからん.." />
-              </div>
-            );
-        }
+function Header({ title }) {
+  return <h1>{title ? title : 'Default title'}</h1>;
+}
 
-        const root = ReactDOM.createRoot(app);
-        root.render(<HeaderPage />); 
-   </script>
- </body>
-</html>
+function HomePage() {
+  const names = ['Ada Lovelace', 'Grace Hopper', 'Margaret Hamilton'];
+
+  const [likes, setLikes] = useState(0);
+
+  function handleClick() {
+    setLikes(likes + 1);
+  }
+
+  return (
+    <div>
+      <Header title="Develop. Preview. Ship." />
+      <ul>
+        {names.map((name) => (
+          <li key={name}>{name}</li>
+        ))}
+      </ul>
+
+      <button onClick={handleClick}>Like ({likes})</button>
+    </div>
+  );
+}
